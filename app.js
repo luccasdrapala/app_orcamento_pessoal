@@ -15,6 +15,23 @@ class Despesa {
             }
         } return true
     }
+
+    modalDespesaValida() {
+        document.getElementById('modal-texto-principal').innerHTML = 'Dados cadastrados com sucesso !!'
+        document.getElementById('exampleModalLabel').innerHTML = 'Sucesso na gravação !!'
+        document.getElementById('exampleModalLabel').className = 'modal-title text-success'
+        document.getElementById('modal-botao').innerHTML = 'Continuar'
+        document.getElementById('modal-botao').className = 'btn btn-success'
+    }
+
+    modalDespesaInvalida() {
+        document.getElementById('modal-texto-principal').innerHTML = 'Faltam alguns itens obrigatórios para o cadastro !!'
+        document.getElementById('exampleModalLabel').innerHTML = 'Erro na gravação !!'
+        document.getElementById('exampleModalLabel').className = 'modal-title text-danger'
+        document.getElementById('modal-botao').innerHTML = 'Voltar e Corrigir'
+        document.getElementById('modal-botao').className = 'btn btn-danger'
+    }
+
 }
 
 class Bd {
@@ -63,10 +80,21 @@ function cadastrarDespesa() {
 
     if(despesa.validarDados()) {
         bd.gravar(despesa)
+        despesa.modalDespesaValida()
         $('#modalRegistraDespeza').modal('show')
     } else {
+        despesa.modalDespesaInvalida()
         $('#modalRegistraDespeza').modal('show')
     }
+}
+
+function zeraCampos() {
+    let ano = document.getElementById('ano').value = ''
+    let mes = document.getElementById('mes').value = ''
+    let dia = document.getElementById('dia').value = ''
+    let tipo = document.getElementById('tipo').value = ''
+    let descricao = document.getElementById('descricao').value = ''
+    let valor = document.getElementById('valor').value = ''
 }
 
 

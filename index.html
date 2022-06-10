@@ -111,24 +111,23 @@
     </div>
     
     <!-- Modal -->
-    <div class="modal fade" id="erroGravacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalRegistraDespeza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-danger" id="exampleModalLabel">Erro na gravação</h5>
+            <h5 id="exampleModalLabel"><!--setado no backend do JS--></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            Existem campos obrigatórios que não foram preenchidos
+          <div id="modal-texto-principal" class="modal-body">
+            <!--texto de sucesso ou falha setado no backend do JS-->
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar e Corrigir</button>
+            <button id="modal-botao" type="button" data-dismiss="modal" onclick="zeraCampos()"><!--setado no backend do JS--></button>
           </div>
         </div>
       </div>
     </div>
-    
   </body>	
 </html>
