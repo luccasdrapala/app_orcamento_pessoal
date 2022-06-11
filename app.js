@@ -31,7 +31,6 @@ class Despesa {
         document.getElementById('modal-botao').innerHTML = 'Voltar e Corrigir'
         document.getElementById('modal-botao').className = 'btn btn-danger'
     }
-
 }
 
 class Bd {
@@ -39,22 +38,39 @@ class Bd {
     constructor() {
 
         let id = localStorage.getItem('id')
-
         if(id === null) {
             localStorage.setItem('id', 0)
         }
-
     }
 
     getProximoId() {
         let proximoId = localStorage.getItem('id')
         return parseInt(proximoId) + 1
+        
     }
 
     gravar(d) {
         let id = this.getProximoId()
         localStorage.setItem(id, JSON.stringify(d))
         localStorage.setItem('id', id)
+    }
+
+    recuperarTodosRegistros() {
+
+        let array_despesas = Array()
+        let id = localStorage.getItem('id')
+
+        for (let i = 1; i <= id; i++){
+
+            let despesa = JSON.parse(localStorage.getItem(i))
+
+            if(despesa === null){
+                continue
+            }
+            array_despesas.push(despesa)
+            console.log(despesa)
+        }
+        return array_despesas
     }
 }
 
@@ -95,6 +111,11 @@ function zeraCampos() {
     let tipo = document.getElementById('tipo').value = ''
     let descricao = document.getElementById('descricao').value = ''
     let valor = document.getElementById('valor').value = ''
+}
+
+function carregaListaDespesas() {
+    let despesas = array()
+    despesas = bd.recuperarTodosRegistros()
 }
 
 
