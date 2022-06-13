@@ -114,8 +114,26 @@ function zeraCampos() {
 }
 
 function carregaListaDespesas() {
-    let despesas = array()
+    let despesas = Array()
     despesas = bd.recuperarTodosRegistros()
+    var listaDespesas = document.getElementById('listaDespesas')
+
+    despesas.forEach( function(d) {
+
+        let linha = listaDespesas.insertRow()
+        linha.insertCell(0)
+        linha.insertCell(1)
+        linha.insertCell(2)
+        linha.insertCell(4)
+    })
+    /*
+    <tr>
+        <td>04/04/1999</td>
+        <td>Alimentação</td>
+        <td>Descrição</td>
+        <td>R$199.99</td>
+    </tr>
+    */
 }
 
 
