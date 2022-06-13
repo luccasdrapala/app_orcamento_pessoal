@@ -31,7 +31,6 @@ class Despesa {
         document.getElementById('modal-botao').innerHTML = 'Voltar e Corrigir'
         document.getElementById('modal-botao').className = 'btn btn-danger'
     }
-
 }
 
 class Bd {
