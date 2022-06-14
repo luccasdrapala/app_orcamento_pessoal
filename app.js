@@ -116,15 +116,15 @@ function zeraCampos() {
 function carregaListaDespesas() {
     let despesas = Array()
     despesas = bd.recuperarTodosRegistros()
-    var listaDespesas = document.getElementById('listaDespesas')
+    let listaDespesas = document.getElementById('listaDespesas')
 
     despesas.forEach( function(d) {
 
         let linha = listaDespesas.insertRow()
-        linha.insertCell(0)
-        linha.insertCell(1)
-        linha.insertCell(2)
-        linha.insertCell(4)
+        linha.insertCell(0).innerHTML = d.dia + '/' + d.mes + '/' + d.ano
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
     })
     /*
     <tr>
