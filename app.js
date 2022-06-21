@@ -68,9 +68,42 @@ class Bd {
                 continue
             }
             array_despesas.push(despesa)
-            console.log(despesa)
+            //console.log(despesa)
         }
         return array_despesas
+    }
+
+    pesquisar(despesa) {
+
+        let despesasFiltradas = Array()
+        despesasFiltradas = this.recuperarTodosRegistros()
+        console.log(despesasFiltradas)
+        
+        if(despesa.ano != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+        }
+
+        if(despesa.mes != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
+        }
+
+        if(despesa.dia != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
+        }
+
+        if(despesa.tipo != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
+        }
+
+        if(despesa.descricao != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
+        }
+
+        if(despesa.valor != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
+        }
+
+        console.log(despesasFiltradas)
     }
 }
 
@@ -126,14 +159,18 @@ function carregaListaDespesas() {
         linha.insertCell(2).innerHTML = d.descricao
         linha.insertCell(3).innerHTML = d.valor
     })
-    /*
-    <tr>
-        <td>04/04/1999</td>
-        <td>Alimentação</td>
-        <td>Descrição</td>
-        <td>R$199.99</td>
-    </tr>
-    */
+}
+
+function pesquisarDespesa() {
+    let ano = document.getElementById('ano').value
+    let mes = document.getElementById('mes').value
+    let dia = document.getElementById('dia').value
+    let tipo = document.getElementById('tipo').value
+    let descricao = document.getElementById('descricao').value
+    let valor = document.getElementById('valor').value
+
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+    bd.pesquisar(despesa)
 }
 
 
