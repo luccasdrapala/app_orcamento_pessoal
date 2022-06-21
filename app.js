@@ -73,11 +73,10 @@ class Bd {
         return array_despesas
     }
 
-    pesquisar(despesa) {
+    filtraDespesa(despesa) {
 
         let despesasFiltradas = Array()
         despesasFiltradas = this.recuperarTodosRegistros()
-        console.log(despesasFiltradas)
         
         if(despesa.ano != ''){
             despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
@@ -103,7 +102,7 @@ class Bd {
             despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
         }
 
-        console.log(despesasFiltradas)
+        return despesasFiltradas
     }
 }
 
@@ -146,10 +145,14 @@ function zeraCampos() {
     let valor = document.getElementById('valor').value = ''
 }
 
-function carregaListaDespesas() {
-    let despesas = Array()
-    despesas = bd.recuperarTodosRegistros()
+function carregaListaDespesas(despesas = Array(), filtro = false) {
+
+    if (despesas.length == 0 && filtro == false){
+        despesas = bd.recuperarTodosRegistros()
+    }
+
     let listaDespesas = document.getElementById('listaDespesas')
+    listaDespesas.innerHTML = ''
 
     despesas.forEach( function(d) {
 
@@ -170,7 +173,10 @@ function pesquisarDespesa() {
     let valor = document.getElementById('valor').value
 
     let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
-    bd.pesquisar(despesa)
+
+    let despesas = bd.filtraDespesa(despesa)
+
+    carregaListaDespesas(despesas, true)
 }
 
 
