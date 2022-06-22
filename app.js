@@ -67,8 +67,9 @@ class Bd {
             if(despesa === null){
                 continue
             }
+            despesa.id = i
+            console.log(despesa)
             array_despesas.push(despesa)
-            //console.log(despesa)
         }
         return array_despesas
     }
@@ -103,6 +104,12 @@ class Bd {
         }
 
         return despesasFiltradas
+    }
+    
+    removerDespesa(id){
+        localStorage.removeItem(id)
+        carregaListaDespesas()
+        //window.location.reload()
     }
 }
 
@@ -161,6 +168,16 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
         linha.insertCell(1).innerHTML = d.tipo
         linha.insertCell(2).innerHTML = d.descricao
         linha.insertCell(3).innerHTML = d.valor
+        //criar botao de exclusão
+        let btn = document.createElement("button")
+        btn.className = "btn btn-danger"
+        btn.innerHTML = '<i class = "fas fa-times"></i>'
+        btn.id = d.id
+        btn.onclick = function() {
+            bd.removerDespesa(btn.id)
+        }
+        linha.insertCell(4).append(btn)
+
     })
 }
 
